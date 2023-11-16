@@ -1,0 +1,17 @@
+datasource db {
+  provider = "postgresql"
+  url = env("PRISMA_URL")
+}
+
+generator client {
+  provider             = "prisma-client-py"
+  recursive_type_depth = 5
+}
+
+model Token {
+  id String   @default(cuid()) @id
+  unique_hash String @unique
+  tx_hash String @unique
+  media_url String
+  owner String
+}
